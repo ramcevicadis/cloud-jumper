@@ -73,42 +73,66 @@ function loadBirdSprites() {
 
 // Load cloud images
 function loadCloudImages() {
-    cloudImages.normal = new Image();
-    cloudImages.normal.src = 'img/clouds/oblak.png';
-    
-    cloudImages.spring = new Image();
-    cloudImages.spring.src = 'img/clouds/oblak_feder.png';
-    
-    cloudImages.breaking = new Image();
-    cloudImages.breaking.src = 'img/clouds/oblak_lomljeni.png';
-    
-    cloudImages.moving = new Image();
-    cloudImages.moving.src = 'img/clouds/oblak_pokret.png';
-    
-    cloudImages.normal.onload = () => {
-        console.log('✅ Normal cloud loaded!');
-        // Store natural aspect ratio
-        cloudImages.normalRatio = cloudImages.normal.height / cloudImages.normal.width;
-    };
-    cloudImages.normal.onerror = () => console.error('❌ Normal cloud FAILED to load!');
-    
-    cloudImages.spring.onload = () => {
-        console.log('✅ Spring cloud loaded!');
-        cloudImages.springRatio = cloudImages.spring.height / cloudImages.spring.width;
-    };
-    cloudImages.spring.onerror = () => console.error('❌ Spring cloud FAILED to load!');
-    
-    cloudImages.breaking.onload = () => {
-        console.log('✅ Breaking cloud loaded!');
-        cloudImages.breakingRatio = cloudImages.breaking.height / cloudImages.breaking.width;
-    };
-    cloudImages.breaking.onerror = () => console.error('❌ Breaking cloud FAILED to load!');
-    
-    cloudImages.moving.onload = () => {
-        console.log('✅ Moving cloud loaded!');
-        cloudImages.movingRatio = cloudImages.moving.height / cloudImages.moving.width;
-    };
-    cloudImages.moving.onerror = () => console.error('❌ Moving cloud FAILED to load!');
+    return new Promise((resolve) => {
+        let loadedCount = 0;
+        const totalImages = 4;
+        
+        const checkAllLoaded = () => {
+            loadedCount++;
+            if (loadedCount === totalImages) {
+                console.log('✅ All cloud images loaded!');
+                resolve();
+            }
+        };
+        
+        cloudImages.normal = new Image();
+        cloudImages.normal.src = 'img/clouds/oblak.png';
+        cloudImages.normal.onload = () => {
+            console.log('✅ Normal cloud loaded!');
+            cloudImages.normalRatio = cloudImages.normal.height / cloudImages.normal.width;
+            checkAllLoaded();
+        };
+        cloudImages.normal.onerror = () => {
+            console.error('❌ Normal cloud FAILED to load!');
+            checkAllLoaded();
+        };
+        
+        cloudImages.spring = new Image();
+        cloudImages.spring.src = 'img/clouds/oblak_feder.png';
+        cloudImages.spring.onload = () => {
+            console.log('✅ Spring cloud loaded!');
+            cloudImages.springRatio = cloudImages.spring.height / cloudImages.spring.width;
+            checkAllLoaded();
+        };
+        cloudImages.spring.onerror = () => {
+            console.error('❌ Spring cloud FAILED to load!');
+            checkAllLoaded();
+        };
+        
+        cloudImages.breaking = new Image();
+        cloudImages.breaking.src = 'img/clouds/oblak_lomljeni.png';
+        cloudImages.breaking.onload = () => {
+            console.log('✅ Breaking cloud loaded!');
+            cloudImages.breakingRatio = cloudImages.breaking.height / cloudImages.breaking.width;
+            checkAllLoaded();
+        };
+        cloudImages.breaking.onerror = () => {
+            console.error('❌ Breaking cloud FAILED to load!');
+            checkAllLoaded();
+        };
+        
+        cloudImages.moving = new Image();
+        cloudImages.moving.src = 'img/clouds/oblak_pokret.png';
+        cloudImages.moving.onload = () => {
+            console.log('✅ Moving cloud loaded!');
+            cloudImages.movingRatio = cloudImages.moving.height / cloudImages.moving.width;
+            checkAllLoaded();
+        };
+        cloudImages.moving.onerror = () => {
+            console.error('❌ Moving cloud FAILED to load!');
+            checkAllLoaded();
+        };
+    });
 }
 
 // Load note images
@@ -164,8 +188,9 @@ function createInitialClouds() {
 
 // Get cloud height based on type and width (maintaining aspect ratio)
 function getCloudHeight(type, width) {
-    // Default to 40 if image not loaded yet
-    let ratio = 0.4; // default 100x40
+    // Use actual aspect ratios from loaded images
+    // Fallback to realistic proportions if image not loaded yet
+    let ratio = 0.35; // default - realistic cloud proportion (slightly flatter than 0.4)
     
     if (type === 'normal' && cloudImages.normalRatio) {
         ratio = cloudImages.normalRatio;
@@ -177,7 +202,7 @@ function getCloudHeight(type, width) {
         ratio = cloudImages.movingRatio;
     }
     
-    return width * ratio;
+    return Math.round(width * ratio);
 }
 
 // Get random cloud type with weighted probability
@@ -305,12 +330,17 @@ function updateComboDisplay() {
 }
 
 // Initialize game
-function init() {
+async function init() {
     loadBirdSprites();
-    loadCloudImages();
     loadNoteImages();
     loadHighScore();
+    
+    // Wait for cloud images to load before creating clouds
+    await loadCloudImages();
+    
+    // Now create clouds with correct aspect ratios
     createInitialClouds();
+    
     setupControls();
     
     // Show start screen

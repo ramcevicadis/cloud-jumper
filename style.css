@@ -68,13 +68,10 @@ h1 {
 }
 
 #gameCanvas {
-    background: linear-gradient(to bottom, 
-        #4A90E2 0%,      /* Darker blue at top */
-        #87CEEB 25%,     /* Sky blue */
-        #B0E0F5 50%,     /* Light blue */
-        #E0F6FF 75%,     /* Very light blue */
-        #F0F8FF 100%     /* Almost white at bottom */
-    );
+    background-image: url('img/bg/sky-background.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     border: 5px solid white;
     border-radius: 15px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
