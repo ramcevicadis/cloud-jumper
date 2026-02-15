@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Jumper - Bilal's Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>Cloud Jumper</h1>
+            <div class="score-display">
+                <div class="score-item">
+                    <span class="label">Score:</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="label">High Score:</span>
+                    <span id="highScore">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-info">
+            <div id="comboDisplay" class="combo-display hidden">
+                🔥 Combo: <span id="comboCount">0</span>x
+            </div>
+        </div>
+        
+        <canvas id="gameCanvas"></canvas>
+        
+        <div class="controls-info">
+            <p class="desktop-controls">🖥️ Desktop: ⬅️ A/Arrow Keys ➡️</p>
+            <p class="mobile-controls">📱 Mobile: Tap Left/Right Side of Screen</p>
+        </div>
+        
+        <div id="startScreen" class="start-screen">
+            <div class="intro-content">
+                <img src="img/intro/game-logo.png" alt="My Words are my Shield" class="game-logo">
+                <button id="startBtn" class="start-button">
+                    ▶ START GAME
+                </button>
+                <div class="company-logos">
+                    <img src="img/intro/huda-logo.png" alt="Huda" class="company-logo">
+                    <img src="img/intro/beautiful-mind.png" alt="Beautiful Mind" class="company-logo">
+                    <img src="img/intro/novel-friends.png" alt="Novel & Friends" class="company-logo">
+                </div>
+            </div>
+        </div>
+        
+        <div id="gameOver" class="game-over hidden">
+            <h2>Game Over!</h2>
+            <p class="final-score-text">Score: <span id="finalScore">0</span></p>
+            <p id="newHighScore" class="new-high-score hidden">🎉 NEW HIGH SCORE! 🎉</p>
+            <p class="high-score-text">High Score: <span id="finalHighScore">0</span></p>
+            <button id="restartBtn" class="game-button">Play Again</button>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
