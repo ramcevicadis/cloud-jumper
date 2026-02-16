@@ -209,7 +209,7 @@ h1 {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 25vh; /* Increased from 5vh to move it lower */
+    margin-bottom: 8vh; /* Increased from 5vh to move it lower */
 }
 
 .start-button:hover {
