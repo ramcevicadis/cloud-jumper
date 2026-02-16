@@ -1,0 +1,24 @@
+{
+  "name": "Cloud Jumper - My Words are my Shield",
+  "short_name": "Cloud Jumper",
+  "description": "Help Bilal jump through the clouds and collect musical notes!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#87CEEB",
+  "theme_color": "#87CEEB",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "img/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "img/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
