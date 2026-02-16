@@ -224,19 +224,19 @@ h1 {
 
 .company-logos {
     display: flex;
-    gap: 25px;
+    gap: 20px;
     align-items: center;
     justify-content: center;
     flex-wrap: nowrap; /* Force single row */
-    padding: 15px 30px;
+    padding: 12px 25px;
     background: rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
+    border-radius: 15px;
     backdrop-filter: blur(10px);
     max-width: 90vw; /* Prevent overflow */
 }
 
 .company-logo {
-    height: 40px;
+    height: 32px;
     width: auto;
     filter: brightness(1.1) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
     transition: transform 0.3s ease;
@@ -384,12 +384,12 @@ h1 {
     }
     
     .company-logos {
-        gap: 15px;
-        padding: 10px 20px;
+        gap: 12px;
+        padding: 8px 15px;
     }
     
     .company-logo {
-        height: 30px;
+        height: 24px;
     }
 }
 
@@ -397,11 +397,11 @@ h1 {
 @media (max-width: 400px) {
     .company-logos {
         gap: 10px;
-        padding: 8px 15px;
+        padding: 6px 12px;
     }
     
     .company-logo {
-        height: 25px;
+        height: 20px;
     }
     
     .game-logo {
