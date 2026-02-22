@@ -103,22 +103,27 @@ h1 {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    display: none; /* Hidden until game starts */
-    z-index: 10; /* Above canvas */
+    background: transparent; /* Use image instead */
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    display: none;
+    z-index: 10;
 }
 
 .controls-info.active {
     display: block;
 }
 
+.controls-info img {
+    display: block;
+    height: auto;
+    max-width: 90vw;
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.3));
+}
+
 .controls-info p {
-    color: #7f8c8d;
-    font-size: 14px;
-    margin: 5px 0;
+    display: none; /* Hide text since it's in the image */
 }
 
 /* Hide mobile controls on desktop */
