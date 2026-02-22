@@ -7,9 +7,15 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-// Canvas dimensions
-canvas.width = 400;
-canvas.height = 600;
+// Canvas dimensions - Fullscreen!
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
 
 // Game variables
 let score = 0;
